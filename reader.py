@@ -1,12 +1,12 @@
 import RPi.GPIO as GPIO
 import time
 
-print("Starting reader press CTRL + C to exit")
+print("Starting reader press CTRL + C to exit.")
 
 clockPin = 4
 dataInputPins = [5,6,13,19,26,16,20,21]
 
-timeSleep = 0.001;
+timeSleep = 0.001
 
 GPIO.setmode(GPIO.BCM)
 mode = GPIO.getmode()
@@ -35,12 +35,16 @@ try:
     f.close()
 
 except KeyboardInterrupt:
-    print("Keyboard interrupt")
+    print("Keyboard interrupt.")
+
+except IOError, e:
+    print("There was a problem writing to file.")
+    print("Error message: {0}".format(e))
 
 except Exception, e:
-    print "An error occurred"
-    print "Error message: " + str(e)
+    print "An error occurred."
+    print "Error message: {0}".format(str(e))
 
 finally:
-    print("Application ends")
+    print("Application ends.")
     GPIO.cleanup()
