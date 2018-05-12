@@ -6,7 +6,7 @@ print("Starting reader press CTRL + C to exit.")
 clockPin = 4
 dataInputPins = [5,6,13,19,26,16,20,21]
 
-timeSleep = 0.001
+timeSleep = 0.0001
 
 GPIO.setmode(GPIO.BCM)
 mode = GPIO.getmode()
@@ -20,7 +20,7 @@ counter = 0
 
 try:
     f = open("output.txt","w")
-    while counter < 1000:
+    while counter < 600000:
         GPIO.output(clockPin, GPIO.HIGH)
         time.sleep(timeSleep)
         value = 0
@@ -38,7 +38,7 @@ except KeyboardInterrupt:
     print("Keyboard interrupt.")
 
 except IOError, e:
-    print("There was a problem writing to file.")
+    print("An error occurred when writing data to file.")
     print("Error message: {0}".format(e))
 
 except Exception, e:
